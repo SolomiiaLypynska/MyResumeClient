@@ -1,7 +1,7 @@
 import { FileOutlined, PieChartOutlined, UserOutlined, TeamOutlined, DesktopOutlined } from '@ant-design/icons';
 import { Layout, Breadcrumb, Menu, theme } from 'antd';
 import React, { useEffect, useState } from "react";
-import { find } from "../../service/UserService";
+import { getUser } from "../../service/UserService";
 
 function getItem(label, key, icon, children) {
     return {
@@ -23,7 +23,7 @@ const items = [
     getItem('Files', '9', <FileOutlined />)
 ];
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Content, Footer, Sider } = Layout;
 
 export const Account = () => {
     const userInfo = JSON.parse(window.localStorage.getItem("userInfo")) || {};
@@ -39,7 +39,7 @@ export const Account = () => {
     }, []);
 
     const findUser = () => {
-        find(userInfo.userId, userInfo.token).then(res => {
+        getUser(userInfo.userId, userInfo.token).then(res => {
             setUser(res);
         }).catch((err) => { console.log(err); });
     }

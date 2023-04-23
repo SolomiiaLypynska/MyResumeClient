@@ -1,4 +1,4 @@
-export const find = (id, token) => {
+export const getUser = (id, token) => {
     return fetch(`http://localhost:8015/user-ws/api/user/${id}`,
         {
             method: "GET",
@@ -12,3 +12,20 @@ export const find = (id, token) => {
             );
         });
 };
+
+export const saveUser = (requestPayload) => {
+    return fetch(`http://localhost:8015/user-ws/api/user`,
+        {
+            method: "POST",
+            body: JSON.stringify(requestPayload),
+            headers: { 'content-type': 'application/json' }
+        })
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            } else throw new Error(
+                `This is an HTTP error: The status is ${response.status}`
+            );
+        });
+};
+
