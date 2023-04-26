@@ -2,6 +2,7 @@ import { Button, Layout } from 'antd';
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 import { logOut } from "../../service/AuthService";
+import {LogoutOutlined} from "@ant-design/icons";
 
 const { Header } = Layout;
 
@@ -19,7 +20,7 @@ export const NavBar = () => {
 
     return (<>
         {userInfo.token &&<Header>
-             <Button onClick={onLogOut}>Log out</Button>
+             <Button icon={<LogoutOutlined />} type="link" onClick={onLogOut}>Sign Out</Button>
         </Header>}
     </>
     );
