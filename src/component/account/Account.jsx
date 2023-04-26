@@ -1,5 +1,5 @@
-import { FileOutlined, PieChartOutlined, UserOutlined, TeamOutlined, DesktopOutlined } from '@ant-design/icons';
-import { Layout, Breadcrumb, Menu, theme } from 'antd';
+import { DesktopOutlined, FileOutlined, PieChartOutlined, TeamOutlined, UserOutlined } from '@ant-design/icons';
+import { Breadcrumb, Layout, Menu, theme } from 'antd';
 import React, { useEffect, useState } from "react";
 import { getUser } from "../../service/UserService";
 
@@ -11,14 +11,15 @@ function getItem(label, key, icon, children) {
         label,
     };
 }
-const items = [
-    getItem('Option 1', '1', <PieChartOutlined />),
-    getItem('Option 2', '2', <DesktopOutlined />),
-    getItem('User', 'sub1', <UserOutlined />, [
+let items = [
+    getItem('Profile', 'sub1', <UserOutlined />, [
         getItem('Tom', '3'),
         getItem('Bill', '4'),
         getItem('Alex', '5'),
     ]),
+    getItem('Option 1', '1', <PieChartOutlined />),
+    getItem('Option 2', '2', <DesktopOutlined />),
+    
     getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
     getItem('Files', '9', <FileOutlined />)
 ];
@@ -30,9 +31,7 @@ export const Account = () => {
 
     const [user, setUser] = useState({});
     const [collapsed, setCollapsed] = useState(false);
-    const {
-        token: { colorBgContainer },
-    } = theme.useToken();
+    const { token: { colorBgContainer } } = theme.useToken();
 
     useEffect(() => {
         findUser();
@@ -51,7 +50,7 @@ export const Account = () => {
                 <div style={{ height: 32, margin: 16, background: 'rgba(255, 255, 255, 0.2)' }} />
                 <Menu theme="dark" defaultSelectedKeys={['']} mode="inline" items={items} />
             </Sider>
-            
+
             <Layout className="site-layout">
                 <Content style={{ margin: '0 16px' }}>
                     <Breadcrumb items={[{ title: 'User' },

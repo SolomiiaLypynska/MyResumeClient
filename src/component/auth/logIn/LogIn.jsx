@@ -29,7 +29,7 @@ export const LogIn = () => {
 
     return (<><Row justify={'space-between'} gutter={[24]}>
         <Col span={1} />
-        <Col span={12}>
+        <Col span={14}>
             <Form form={form} name="basic" labelCol={{ span: 8 }} wrapperCol={{ span: 30 }} style={{ maxWidth: 700 }}
                 initialValues={{ remember: true, }} onFinish={onFinish} autoComplete="off">
                 <Form.Item label="Email" name="email"
