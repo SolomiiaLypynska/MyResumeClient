@@ -1,28 +1,6 @@
-import { DesktopOutlined, FileOutlined, PieChartOutlined, TeamOutlined, UserOutlined } from '@ant-design/icons';
-import { Breadcrumb, Layout, Menu, theme } from 'antd';
+import { Breadcrumb, Layout, theme } from 'antd';
 import React, { useEffect, useState } from "react";
 import { getUser } from "../../service/UserService";
-
-function getItem(label, key, icon, children) {
-    return {
-        key,
-        icon,
-        children,
-        label,
-    };
-}
-let items = [
-    getItem('Profile', 'sub1', <UserOutlined />, [
-        getItem('Tom', '3'),
-        getItem('Bill', '4'),
-        getItem('Alex', '5'),
-    ]),
-    getItem('Option 1', '1', <PieChartOutlined />),
-    getItem('Option 2', '2', <DesktopOutlined />),
-    
-    getItem('Team', 'sub2', <TeamOutlined />, [getItem('Team 1', '6'), getItem('Team 2', '8')]),
-    getItem('Files', '9', <FileOutlined />)
-];
 
 const { Content, Footer, Sider } = Layout;
 
@@ -45,12 +23,6 @@ export const Account = () => {
 
     return (
         <Layout style={{ minHeight: '100vh' }} >
-
-            <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
-                <div style={{ height: 32, margin: 16, background: 'rgba(255, 255, 255, 0.2)' }} />
-                <Menu theme="dark" defaultSelectedKeys={['']} mode="inline" items={items} />
-            </Sider>
-
             <Layout className="site-layout">
                 <Content style={{ margin: '0 16px' }}>
                     <Breadcrumb items={[{ title: 'User' },
