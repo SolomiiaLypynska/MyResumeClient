@@ -1,5 +1,5 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Col, Form, Input, Row } from 'antd';
+import { Button, Col, Form, Input, Radio, Row, Space } from 'antd';
 import React from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import { saveUser } from "../../../service/UserService";
@@ -41,6 +41,15 @@ export const SignUp = () => {
                 </Form.Item>
                 <Form.Item label="Password" name="password" rules={[{ required: true, message: '' }]}>
                     <Input.Password prefix={<LockOutlined className="site-form-item-icon" />} placeholder="Password..." />
+                </Form.Item>
+                <Form.Item label="Role" name="role" wrapperCol={{ span: 10 }}
+                    rules={[{ required: true, message: '' }]}>
+                    <Radio.Group style={{ textAlign: "left" }}>
+                        <Space direction="vertical">
+                            <Radio value={"USER"}>I'm looking for a job</Radio>
+                            <Radio value={"RESEARCHER"}>I am looking for an employee</Radio>
+                        </Space>
+                    </Radio.Group>
                 </Form.Item>
                 <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                     <Button type="primary" htmlType="submit">SignUp</Button>
