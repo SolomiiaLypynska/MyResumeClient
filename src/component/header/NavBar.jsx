@@ -1,8 +1,8 @@
-import { Button, Layout, Avatar, Space } from 'antd';
+import { LogoutOutlined, UserOutlined } from "@ant-design/icons";
+import { Avatar, Button, Dropdown, Layout } from 'antd';
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 import { logOut } from "../../service/AuthService";
-import { LogoutOutlined, UserOutlined } from "@ant-design/icons";
 import './Header.css';
 
 const { Header } = Layout;
@@ -17,14 +17,20 @@ export const NavBar = () => {
             window.localStorage.removeItem("userInfo");
             navigate('/logIn');
         }).catch((err) => { console.log(err); });
-    }
+    };
+
+    const items = [
+        {
+            key: 'logout',
+            label: (<Button icon={<LogoutOutlined />} type="link" onClick={onLogOut}>Sign Out</Button>)
+        }
+    ];
 
     return (<>
         {userInfo.token && <Header>
-            <Button icon={<LogoutOutlined />} type="link" onClick={onLogOut}>Sign Out</Button>
-            <Space size={16} wrap>
+            <Dropdown menu={{ items }} trigger={['click']}>
                 <Avatar className='avatar' icon={<UserOutlined />} />
-            </Space>
+            </Dropdown>
         </Header>}
     </>
     );
