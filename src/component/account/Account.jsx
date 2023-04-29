@@ -2,13 +2,12 @@ import { Breadcrumb, Layout, theme } from 'antd';
 import React, { useEffect, useState } from "react";
 import { getUser } from "../../service/UserService";
 
-const { Content, Footer, Sider } = Layout;
+const { Content, Footer } = Layout;
 
 export const Account = () => {
     const userInfo = JSON.parse(window.localStorage.getItem("userInfo")) || {};
 
     const [user, setUser] = useState({});
-    const [collapsed, setCollapsed] = useState(false);
     const { token: { colorBgContainer } } = theme.useToken();
 
     useEffect(() => {

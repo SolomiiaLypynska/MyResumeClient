@@ -4,7 +4,7 @@ import React, { useContext } from "react";
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from "../../App";
 import { logOut } from "../../service/AuthService";
-import './Header.css';
+import './NavBar.css';
 
 const { Header } = Layout;
 
@@ -32,7 +32,7 @@ export const NavBar = () => {
     return (<>
         {isLogin && <Header>
             <Dropdown menu={{ items }} trigger={['click']}>
-                <Avatar className='avatar' icon={<UserOutlined />} />
+                <Avatar className='avatar' icon={<UserOutlined />}/>
             </Dropdown>
         </Header>}
     </>

@@ -9,7 +9,8 @@ import { NavBar } from './component/header/NavBar';
 export const UserContext = createContext();
 
 function App() {
-  const [isLogin, setLogin] = useState(false);
+  const userInfo = JSON.parse(window.localStorage.getItem("userInfo")) || {};
+  const [isLogin, setLogin] = useState(!!userInfo?.token);
   return (
     <div className="App">
 
