@@ -1,7 +1,7 @@
 import { LogoutOutlined, UserOutlined } from "@ant-design/icons";
 import { Avatar, Button, Dropdown, Layout } from 'antd';
 import React, { useContext } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { UserContext } from "../../App";
 import { logOut } from "../../service/AuthService";
 import './NavBar.css';
@@ -24,6 +24,10 @@ export const NavBar = () => {
 
     const items = [
         {
+            key: 'profile',
+            label: (<Link to="/" style={{ marginLeft: "30px" }}>My Profile</Link>)
+        },
+        {
             key: 'logout',
             label: (<Button icon={<LogoutOutlined />} type="link" onClick={onLogOut}>Sign Out</Button>)
         }
@@ -31,9 +35,11 @@ export const NavBar = () => {
 
     return (<>
         {isLogin && <Header>
-            <Dropdown menu={{ items }} trigger={['click']}>
-                <Avatar className='avatar' icon={<UserOutlined />}/>
-            </Dropdown>
+            <div className="profile-dropdown">
+                <Dropdown menu={{ items }} >
+                    <Avatar className='avatar' icon={<UserOutlined />} />
+                </Dropdown>
+            </div>
         </Header>}
     </>
     );

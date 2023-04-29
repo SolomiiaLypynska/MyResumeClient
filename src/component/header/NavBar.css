@@ -1,3 +1,7 @@
 .avatar {
-    background-color: #7dd8bade
+    background-color: #7dd8bade;
 }
+
+.profile-dropdown {
+    text-align: right ;
+} 

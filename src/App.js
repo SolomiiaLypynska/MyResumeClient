@@ -19,8 +19,8 @@ function App() {
           <NavBar />
           <Routes >
             <Route path='/' element={isLogin ? <Account /> : <LogIn />} />
-            <Route path='/login' element={<LogIn />} />
-            <Route path='/signup' element={<SignUp />} />
+            <Route path='/login' element={!isLogin && <LogIn />} />
+            <Route path='/signup' element={!isLogin && <SignUp />} />
             <Route path='/account' element={isLogin && <Account />} />
           </Routes >
         </UserContext.Provider>
