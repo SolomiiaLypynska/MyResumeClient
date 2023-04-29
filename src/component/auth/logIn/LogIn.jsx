@@ -1,10 +1,12 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Col, Form, Input, Row } from 'antd';
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useNavigate } from 'react-router-dom';
+import { UserContext } from "../../../App";
 import { logIn } from "../../../service/AuthService";
 
 export const LogIn = () => {
+    const { setLogin } = useContext(UserContext)
     const navigate = useNavigate();
     const [form] = Form.useForm();
 
@@ -21,6 +23,7 @@ export const LogIn = () => {
                         token: res.headers.get('token')
                     }
                     window.localStorage.setItem("userInfo", JSON.stringify(userInfo));
+                    setLogin(true)
                     onReset();
                     navigate('/account');
                 }).catch((err) => { console.log(err); });

@@ -1,25 +1,28 @@
+import React, { createContext, useState } from "react";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import { LandingPage } from './component/LandingPage';
-import { BrowserRouter, Routes , Route } from 'react-router-dom';
-import  {SignUp}  from './component/auth/signUp/SignUp';
-import {LogIn} from './component/auth/logIn/LogIn';
 import { Account } from './component/account/Account';
+import { LogIn } from './component/auth/logIn/LogIn';
+import { SignUp } from './component/auth/signUp/SignUp';
 import { NavBar } from './component/header/NavBar';
 
+export const UserContext = createContext();
+
 function App() {
-  const userInfo = JSON.parse(window.localStorage.getItem("userInfo")) || {};
+  const [isLogin, setLogin] = useState(false);
   return (
     <div className="App">
-      
-      <BrowserRouter>
-      <NavBar/>
-      <Routes >
-      <Route path='/' element={userInfo.token ? <LandingPage/> : <LogIn/>}/>
-      <Route path='/login' element={<LogIn/>}/>
-      <Route path='/signup' element={<SignUp/>}/>
-      <Route path='/account' element={<Account/>}/>
 
-      </Routes >
+      <BrowserRouter>
+        <UserContext.Provider value={{ isLogin: isLogin, setLogin: setLogin }}>
+          <NavBar />
+          <Routes >
+            <Route path='/' element={isLogin ? <Account /> : <LogIn />} />
+            <Route path='/login' element={<LogIn />} />
+            <Route path='/signup' element={<SignUp />} />
+            <Route path='/account' element={isLogin && <Account />} />
+          </Routes >
+        </UserContext.Provider>
       </BrowserRouter>
     </div>
   );
