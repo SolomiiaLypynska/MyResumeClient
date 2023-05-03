@@ -25,7 +25,7 @@ export const NavBar = () => {
     const items = [
         {
             key: 'profile',
-            label: (<Link to="/" style={{ marginLeft: "30px" }}>My Profile</Link>)
+            label: (<Link to="/profile" style={{ marginLeft: "30px" }}>My Profile</Link>)
         },
         {
             key: 'logout',

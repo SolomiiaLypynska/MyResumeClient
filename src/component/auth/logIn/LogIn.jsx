@@ -25,7 +25,7 @@ export const LogIn = () => {
                     window.localStorage.setItem("userInfo", JSON.stringify(userInfo));
                     setLogin(true)
                     onReset();
-                    navigate('/account');
+                    navigate('/profile');
                 }).catch((err) => { console.log(err); });
         })
     };

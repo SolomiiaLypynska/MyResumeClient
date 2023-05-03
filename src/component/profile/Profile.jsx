@@ -4,7 +4,7 @@ import { getUser } from "../../service/UserService";
 
 const { Content, Footer } = Layout;
 
-export const Account = () => {
+export const Profile = () => {
     const userInfo = JSON.parse(window.localStorage.getItem("userInfo")) || {};
 
     const [user, setUser] = useState({});
