@@ -1,7 +1,7 @@
 import { LogoutOutlined, UserOutlined } from "@ant-design/icons";
 import { Avatar, Button, Dropdown, Layout } from 'antd';
 import React, { useContext } from "react";
-import { useNavigate, Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from "../../App";
 import { logOut } from "../../service/AuthService";
 import './NavBar.css';
@@ -10,7 +10,7 @@ const { Header } = Layout;
 
 export const NavBar = () => {
     const userInfo = JSON.parse(window.localStorage.getItem("userInfo")) || {};
-    const { setLogin, isLogin } = useContext(UserContext)
+    const { setLogin, isLogin } = useContext(UserContext);
 
     const navigate = useNavigate();
 
@@ -23,22 +23,14 @@ export const NavBar = () => {
     };
 
     const items = [
-        {
-            key: 'profile',
-            label: (<Link to="/profile" style={{ marginLeft: "30px" }}>My Profile</Link>)
-        },
-        {
-            key: 'logout',
-            label: (<Button icon={<LogoutOutlined />} type="link" onClick={onLogOut}>Sign Out</Button>)
-        }
+        { key: 'profile', label: (<Link to="/profile" style={{ marginLeft: "30px" }}>My Profile</Link>) },
+        { key: 'logout', label: (<Button icon={<LogoutOutlined />} type="link" onClick={onLogOut}>Sign Out</Button>) }
     ];
 
     return (<>
         {isLogin && <Header>
             <div className="profile-dropdown">
-                <Dropdown menu={{ items }} >
-                    <Avatar className='avatar' icon={<UserOutlined />} />
-                </Dropdown>
+                <Dropdown menu={{ items }} ><Avatar className='avatar' icon={<UserOutlined />} /></Dropdown>
             </div>
         </Header>}
     </>

@@ -8,9 +8,7 @@ export const SignUp = () => {
     const navigate = useNavigate();
     const [form] = Form.useForm();
 
-    const onReset = () => {
-        form.resetFields();
-    };
+    const onReset = () => { form.resetFields(); };
 
     const onFinish = () => {
         form.validateFields().then(val => {

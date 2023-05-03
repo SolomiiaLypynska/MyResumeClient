@@ -10,9 +10,7 @@ export const LogIn = () => {
     const navigate = useNavigate();
     const [form] = Form.useForm();
 
-    const onReset = () => {
-        form.resetFields();
-    };
+    const onReset = () => { form.resetFields(); };
 
     const onFinish = () => {
         form.validateFields().then(val => {
@@ -20,10 +18,11 @@ export const LogIn = () => {
                 .then(res => {
                     const userInfo = {
                         userId: res.headers.get('userId'),
-                        token: res.headers.get('token')
+                        token: res.headers.get('token'),
+                        role: res.headers.get('role')
                     }
                     window.localStorage.setItem("userInfo", JSON.stringify(userInfo));
-                    setLogin(true)
+                    setLogin(true);
                     onReset();
                     navigate('/profile');
                 }).catch((err) => { console.log(err); });
