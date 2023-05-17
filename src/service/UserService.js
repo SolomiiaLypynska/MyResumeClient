@@ -14,7 +14,7 @@ export const getUser = (id, token) => {
 };
 
 export const saveUser = (requestPayload) => {
-    return fetch(`http://localhost:8015/user-ws/api/user`,
+    return fetch(`http://localhost:8015/user-ws/api/user/signup`,
         {
             method: "POST",
             body: JSON.stringify(requestPayload),
