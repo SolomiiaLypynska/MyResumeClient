@@ -4,6 +4,7 @@ import React, { useContext } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from "../../../App";
 import { logIn } from "../../../service/AuthService";
+import './LogIn.css';
 
 export const LogIn = () => {
     const { setLogin } = useContext(UserContext)
@@ -32,7 +33,7 @@ export const LogIn = () => {
     return (<><Row justify={'space-between'} gutter={[24]}>
         <Col span={1} />
         <Col span={14}>
-            <Form form={form} name="basic" labelCol={{ span: 8 }} wrapperCol={{ span: 30 }} style={{ maxWidth: 700 }}
+            <Form form={form} name="basic" labelCol={{ span: 8 }} wrapperCol={{ span: 30 }} className='login-form'
                 initialValues={{ remember: true, }} onFinish={onFinish} autoComplete="off">
                 <Form.Item label="Email" name="email"
                     rules={[{ type: 'email', message: '' }, { required: true, message: '' }]}>
@@ -43,7 +44,7 @@ export const LogIn = () => {
                 </Form.Item>
                 <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                     <Button type="primary" htmlType="submit">LogIn</Button>
-                    <Link to="/signup" style={{ marginLeft: "30px" }}>SignUp</Link>
+                    <Link to="/signup" className='signup-link'>SignUp</Link>
                 </Form.Item>
             </Form>
         </Col>

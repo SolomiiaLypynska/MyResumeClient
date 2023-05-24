@@ -3,6 +3,7 @@ import { Button, Col, Form, Input, Radio, Row, Space } from 'antd';
 import React from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import { saveUser } from "../../../service/UserService";
+import './SignUp.css';
 
 export const SignUp = () => {
     const navigate = useNavigate();
@@ -23,7 +24,7 @@ export const SignUp = () => {
     return (<><Row justify={'space-between'} gutter={[24]}>
         <Col span={1} />
         <Col span={12}>
-            <Form form={form} name="basic" labelCol={{ span: 8 }} wrapperCol={{ span: 30 }} style={{ maxWidth: 700 }}
+            <Form form={form} name="basic" labelCol={{ span: 8 }} wrapperCol={{ span: 30 }} className='signup-form'
                 initialValues={{ remember: true, }} onFinish={onFinish} autoComplete="off">
                 <Form.Item label="First Name" name="firstName"
                     rules={[{ required: true, message: '' }]}>
@@ -51,7 +52,7 @@ export const SignUp = () => {
                 </Form.Item>
                 <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                     <Button type="primary" htmlType="submit">SignUp</Button>
-                    <Link to="/login" style={{ marginLeft: "30px" }}>LogIn</Link>
+                    <Link to="/login" className='login-link'>LogIn</Link>
                 </Form.Item>
             </Form>
         </Col>

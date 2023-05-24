@@ -1,8 +1,8 @@
 import { Breadcrumb, Layout, theme } from 'antd';
 import React, { useEffect, useState } from "react";
 import { getUser } from "../../service/UserService";
-import { ProfileAvatar } from './ProfileAvatar';
-import { WorkExperience } from './WorkExperience';
+import { ProfileAvatar } from './profileAvatar/ProfileAvatar';
+import { WorkExperience } from './workExperience/WorkExperience';
 
 const { Content, Footer } = Layout;
 

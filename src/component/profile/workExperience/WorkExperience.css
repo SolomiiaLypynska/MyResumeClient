@@ -1,0 +1,11 @@
+.experience-col {
+    flex: 0 0 15%;
+}
+
+.experience-title {
+    margin-top: 40px;
+}
+
+.experience-block {
+    margin-top: 15px;
+}
