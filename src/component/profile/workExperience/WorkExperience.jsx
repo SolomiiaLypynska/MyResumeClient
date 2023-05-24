@@ -1,11 +1,17 @@
-import { Col, Row, Space } from 'antd';
+import { Button, Col, Row, Space } from 'antd';
 import React from "react";
 import './WorkExperience.css';
+import { PlusOutlined, EditOutlined } from '@ant-design/icons';
 
 export const WorkExperience = ({ profileUser }) => {
 
     return (<div className='experience-title'>
-        <Row justify={'space-between'} gutter={[24]} ><Col span={3}> <Space wrap size={16}>Experience</Space> </Col></Row>
+        <Row justify={'space-between'} gutter={[24]} ><Col span={3}> <Space wrap size={16}>Experience</Space> </Col>
+            <Col span={19} />
+            <Col span={1}> <Button icon={<PlusOutlined className='experience-button' />} type="text" /> </Col>
+            <Col span={1}> <Button icon={<EditOutlined className='experience-button' />} type="text" /> </Col>
+        </Row>
+
 
         {profileUser?.workExperiences?.map((profile, index) => <div className='experience-block'>
             <Row key={index} justify={'space-between'} gutter={[24]} align="top">
