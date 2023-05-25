@@ -13,10 +13,10 @@ export const Profile = () => {
     const { token: { colorBgContainer } } = theme.useToken();
 
     useEffect(() => {
-        findUser();
+        getProfileUser();
     }, []);
 
-    const findUser = () => {
+    const getProfileUser = () => {
         getUser(userInfo.userId, userInfo.token).then(res => {
             setProfileUser(res);
         }).catch((err) => { console.log(err); });
@@ -30,7 +30,7 @@ export const Profile = () => {
                     { title: <a href="">{profileUser.firstName}</a> }]} />
                     <div style={{ padding: 24, minHeight: 700, background: colorBgContainer }}>
                         <ProfileAvatar profileUser={profileUser} />
-                        <WorkExperience profileUser={profileUser}/>
+                        <WorkExperience profileUser={profileUser} getProfileUser={getProfileUser} />
                     </div>
                 </Content>
                 <Footer style={{ textAlign: 'center' }}>My-Resume ©2023 Created by S.L.</Footer>
