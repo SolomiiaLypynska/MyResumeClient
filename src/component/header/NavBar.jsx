@@ -29,7 +29,7 @@ export const NavBar = () => {
 
     return (<>
         {isLogin && <Header>
-            <div className="profile-dropdown">
+            <div className="profile-dropdown" style={{ margin: '0 300px' }}>
                 <Dropdown menu={{ items }} ><Avatar className='avatar' icon={<UserOutlined />} /></Dropdown>
             </div>
         </Header>}

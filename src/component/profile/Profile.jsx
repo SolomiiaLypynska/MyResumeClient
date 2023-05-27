@@ -25,7 +25,7 @@ export const Profile = () => {
     return (
         <Layout style={{ minHeight: '100vh' }} >
             <Layout className="site-layout">
-                <Content style={{ margin: '0 16px' }}>
+                <Content style={{ margin: '0 300px' }}>
                     <Breadcrumb items={[{ title: 'User' },
                     { title: <a href="">{profileUser.firstName}</a> }]} />
                     <div style={{ padding: 24, minHeight: 700, background: colorBgContainer }}>

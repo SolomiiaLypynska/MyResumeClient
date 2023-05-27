@@ -3,7 +3,7 @@ import { Avatar, Col, Row, Space } from 'antd';
 import React from "react";
 
 export const ProfileAvatar = ({ profileUser }) => {
-
+//Todo add Descriptions from antd
     return (<>
         <Row justify={'space-between'} gutter={[24]}>
             <Col span={3}> <Space wrap size={16}> <Avatar size={80} icon={<UserOutlined />} /> </Space> </Col>
