@@ -4,10 +4,15 @@
 
 .experience-title {
     margin-top: 30px;
+    margin-right: 5px;
 }
 
 .experience-block {
     margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(224, 239, 246, 0.673);
+    padding-right: 5px;
 }
 
 .experience-button {
@@ -15,6 +20,15 @@
     color: rgb(6, 95, 139);
 }
 
-.experience-title{
+.experience-title {
     color: rgb(119, 150, 167);
+}
+
+.left-component {
+    align-self: flex-start;
+    text-align: left;
+}
+
+.right-component {
+    align-self: flex-start;
 }

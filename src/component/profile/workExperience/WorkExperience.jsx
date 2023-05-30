@@ -1,9 +1,9 @@
-import { PlusOutlined } from '@ant-design/icons';
-import { Button, Col, Row, Space, Divider, Typography } from 'antd';
+import { DeleteOutlined, PlusOutlined, EditOutlined } from '@ant-design/icons';
+import { Button, Row, Typography } from 'antd';
+import moment from "moment";
 import React, { useState } from "react";
 import './WorkExperience.css';
 import { WorkExperienceModal } from './WorkExperienceModal';
-import moment from "moment";
 
 export const WorkExperience = ({ profileUser, getProfileUser }) => {
     const { Title } = Typography;
@@ -22,22 +22,18 @@ export const WorkExperience = ({ profileUser, getProfileUser }) => {
         </Row>
 
         {profileUser?.workExperiences?.map((profile, index) => <div key={profile.workExperienceId} className='experience-block'>
-            <Row key={"position"} justify={'space-between'} gutter={[24]} align="top">
-                <Col span={22}><Divider orientation="left">{profile.positionTitle}</Divider></Col>
-            </Row>
-            <Row key={"companyName"} gutter={[24]}>
-                <Col> <Space ><span className='experience-title'>Company:</span><b>{profile.companyName}</b></Space> </Col>
-            </Row>
-            <Row key={"employmentDate"} gutter={[24]}><Col><Space wrap size={16}>
-                {moment(profile.startDate).format("MMM YYYY")}-
-                {profile.endDate ? moment(profile.endDate).format("MMM YYYY") : "Present"}</Space></Col>
-            </Row>
-            <Row key={"employmentType"} gutter={[24]}>
-                <Col> <Space ><span className='experience-title'>Employment Type:</span><b>{profile.employmentType}</b></Space> </Col>
-            </Row>
-            {profile?.description && <Row key={"description"} gutter={[24]}>
-                <Col> <Space ><span className='experience-title'>Description:</span><b>{profile.description}</b></Space> </Col>
-            </Row>}
+            <div class="left-component">
+                <div><b>{profile.positionTitle}</b></div>
+                <div><span className='experience-title'>Company:</span><b>{profile.companyName}</b></div>
+                <div>{moment(profile.startDate).format("MMM YYYY")}-
+                    {profile.endDate ? moment(profile.endDate).format("MMM YYYY") : "Present"}</div>
+                <div><span className='experience-title'>Employment Type:</span><b>{profile.employmentType}</b></div>
+                <div><span className='experience-title'>Description:</span><b>{profile.description}</b></div>
+            </div>
+            <div class="right-component">
+                <Button style={{ color: "rgb(34 105 126)" }} type="text" shape="circle" icon={<EditOutlined />} />
+                <Button style={{ color: "#d2464d" }} type="text" shape="circle" icon={<DeleteOutlined />} />
+            </div>
         </div>
         )}
         <WorkExperienceModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} getProfileUser={getProfileUser} />
