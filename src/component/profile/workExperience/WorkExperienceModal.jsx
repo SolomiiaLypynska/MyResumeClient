@@ -1,11 +1,28 @@
 import { DatePicker, Form, Input, Modal } from 'antd';
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { addExperience } from "../../../service/WorkExperienceService";
 import './WorkExperience.css';
+import moment from "moment";
 
-export const WorkExperienceModal = ({ isModalOpen, setIsModalOpen, getProfileUser }) => {
+export const WorkExperienceModal = ({ isModalOpen, setIsModalOpen, getProfileUser, editableExperience }) => {
     const userInfo = JSON.parse(window.localStorage.getItem("userInfo")) || {};
     const [form] = Form.useForm();
+
+    useEffect(() => {
+        if(editableExperience){
+            form.setFieldsValue({
+                positionTitle: editableExperience.positionTitle,
+                companyName: editableExperience.companyName,
+                employmentType: editableExperience.employmentType,
+                description: editableExperience.description,
+                toolAndTechnology: editableExperience.toolAndTechnology,
+                country: editableExperience.country,
+                city: editableExperience.city,
+                 startDate: moment(editableExperience.startDate, 'YYYY-MM-DD'),
+                // endDate: editableExperience.endDate,
+            })
+        }
+    }, [editableExperience, isModalOpen]);
 
     const handleOk = () => {
         form.validateFields().then(val => {
@@ -14,7 +31,7 @@ export const WorkExperienceModal = ({ isModalOpen, setIsModalOpen, getProfileUse
                 .then(res => {
                     handleCancel();
                     setIsModalOpen(false);
-                    getProfileUser()
+                    getProfileUser();
                 }).catch((err) => { setIsModalOpen(false); });
         })
 
