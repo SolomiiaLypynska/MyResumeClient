@@ -9,7 +9,7 @@ export const WorkExperienceModal = ({ isModalOpen, setIsModalOpen, getProfileUse
     const [form] = Form.useForm();
 
     useEffect(() => {
-        if (editableExperience) {
+        if (Object.keys(editableExperience).length !== 0) {
             form.setFieldsValue({
                 positionTitle: editableExperience.positionTitle,
                 companyName: editableExperience.companyName,
