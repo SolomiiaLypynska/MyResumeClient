@@ -1,15 +1,15 @@
 import { DatePicker, Form, Input, Modal } from 'antd';
-import React, { useEffect, useState } from "react";
+import dayjs from 'dayjs';
+import React, { useEffect } from "react";
 import { addExperience } from "../../../service/WorkExperienceService";
 import './WorkExperience.css';
-import moment from "moment";
 
 export const WorkExperienceModal = ({ isModalOpen, setIsModalOpen, getProfileUser, editableExperience }) => {
     const userInfo = JSON.parse(window.localStorage.getItem("userInfo")) || {};
     const [form] = Form.useForm();
 
     useEffect(() => {
-        if(editableExperience){
+        if (editableExperience) {
             form.setFieldsValue({
                 positionTitle: editableExperience.positionTitle,
                 companyName: editableExperience.companyName,
@@ -18,7 +18,7 @@ export const WorkExperienceModal = ({ isModalOpen, setIsModalOpen, getProfileUse
                 toolAndTechnology: editableExperience.toolAndTechnology,
                 country: editableExperience.country,
                 city: editableExperience.city,
-                 startDate: moment(editableExperience.startDate, 'YYYY-MM-DD'),
+                startDate: dayjs(editableExperience.startDate),
                 // endDate: editableExperience.endDate,
             })
         }

@@ -1,4 +1,4 @@
-import { DeleteOutlined, PlusOutlined, EditOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Row, Typography } from 'antd';
 import moment from "moment";
 import React, { useEffect, useState } from "react";
@@ -27,21 +27,23 @@ export const WorkExperience = ({ profileUser, getProfileUser }) => {
             <div className="left-component">
                 <div><b>{profile.positionTitle}</b></div>
                 <div><span className='experience-title'>Company:</span><b>{profile.companyName}</b></div>
-                <div>{moment(profile.startDate).format("MMM YYYY")}-
+                <div>{moment(profile.startDate).format("DD MMM YYYY")}-
                     {profile.endDate ? moment(profile.endDate).format("MMM YYYY") : "Present"}</div>
                 <div><span className='experience-title'>Employment Type:</span><b>{profile.employmentType}</b></div>
                 <div><span className='experience-title'>Description:</span><b>{profile.description}</b></div>
             </div>
             <div className="right-component">
                 <Button style={{ color: "rgb(34 105 126)" }} type="text" shape="circle" icon={<EditOutlined />}
-                onClick={() => {setIsModalOpen(true);
-                setSelectedExperience(profile)}} />
+                    onClick={() => {
+                        setIsModalOpen(true);
+                        setSelectedExperience(profile)
+                    }} />
                 <Button style={{ color: "#d2464d" }} type="text" shape="circle" icon={<DeleteOutlined />} />
             </div>
         </div>
         )}
         <WorkExperienceModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} getProfileUser={getProfileUser}
-        editableExperience={selectedExperience} />
+            editableExperience={selectedExperience} />
     </>
     )
 };
