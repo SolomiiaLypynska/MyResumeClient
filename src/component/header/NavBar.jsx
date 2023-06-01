@@ -11,7 +11,6 @@ const { Header } = Layout;
 export const NavBar = () => {
     const userInfo = JSON.parse(window.localStorage.getItem("userInfo")) || {};
     const { setLogin, isLogin } = useContext(UserContext);
-
     const navigate = useNavigate();
 
     const onLogOut = () => {

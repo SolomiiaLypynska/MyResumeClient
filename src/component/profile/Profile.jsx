@@ -1,6 +1,7 @@
 import { Breadcrumb, Layout, theme } from 'antd';
 import React, { useEffect, useState } from "react";
 import { getUser } from "../../service/UserService";
+import './Profile.css';
 import { ProfileAvatar } from './profileAvatar/ProfileAvatar';
 import { WorkExperience } from './workExperience/WorkExperience';
 
@@ -8,9 +9,9 @@ const { Content, Footer } = Layout;
 
 export const Profile = () => {
     const userInfo = JSON.parse(window.localStorage.getItem("userInfo")) || {};
+    const { token: { colorBgContainer } } = theme.useToken();
 
     const [profileUser, setProfileUser] = useState({});
-    const { token: { colorBgContainer } } = theme.useToken();
 
     useEffect(() => {
         getProfileUser();
@@ -20,7 +21,7 @@ export const Profile = () => {
         getUser(userInfo.userId, userInfo.token).then(res => {
             setProfileUser(res);
         }).catch((err) => { console.log(err); });
-    }
+    };
 
     return (
         <Layout style={{ minHeight: '100vh' }} >

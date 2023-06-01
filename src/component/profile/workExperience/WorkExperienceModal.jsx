@@ -19,14 +19,14 @@ export const WorkExperienceModal = ({ isModalOpen, setIsModalOpen, getProfileUse
                 country: editableExperience.country,
                 city: editableExperience.city,
                 startDate: dayjs(editableExperience.startDate),
-                // endDate: editableExperience.endDate,
+                endDate: editableExperience.endDate && dayjs(editableExperience.endDate)
             })
         }
     }, [editableExperience, isModalOpen]);
 
     const handleOk = () => {
         form.validateFields().then(val => {
-            val = { ...val, userId: userInfo.userId }
+            val = { ...val, userId: userInfo.userId };
             addExperience(val, userInfo.token)
                 .then(res => {
                     handleCancel();
@@ -34,8 +34,8 @@ export const WorkExperienceModal = ({ isModalOpen, setIsModalOpen, getProfileUse
                     getProfileUser();
                 }).catch((err) => { setIsModalOpen(false); });
         })
-
     };
+
     const handleCancel = () => {
         setIsModalOpen(false);
         form.resetFields();
@@ -68,7 +68,7 @@ export const WorkExperienceModal = ({ isModalOpen, setIsModalOpen, getProfileUse
                 <DatePicker />
             </Form.Item>
             <Form.Item label="End Date" name="endDate">
-                <Input placeholder="End Date..." />
+                <DatePicker />
             </Form.Item>
         </Form>
     </Modal>

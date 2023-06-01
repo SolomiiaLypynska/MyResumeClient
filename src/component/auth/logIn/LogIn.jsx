@@ -35,8 +35,7 @@ export const LogIn = () => {
         <Col span={14}>
             <Form form={form} name="basic" labelCol={{ span: 8 }} wrapperCol={{ span: 30 }} className='login-form'
                 initialValues={{ remember: true, }} onFinish={onFinish} autoComplete="off">
-                <Form.Item label="Email" name="email"
-                    rules={[{ type: 'email', message: '' }, { required: true, message: '' }]}>
+                <Form.Item label="Email" name="email" rules={[{ type: 'email', message: '' }, { required: true, message: '' }]}>
                     <Input prefix={<UserOutlined />} placeholder="Email" />
                 </Form.Item>
                 <Form.Item label="Password" name="password" rules={[{ required: true, message: '' }]}>

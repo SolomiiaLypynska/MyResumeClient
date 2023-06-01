@@ -1,14 +1,14 @@
 import { DeleteOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons';
-import { Button, Popconfirm, Row, Typography } from 'antd';
+import { Button, Popconfirm, Typography } from 'antd';
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { deleteById } from "../../../service/WorkExperienceService";
 import './WorkExperience.css';
 import { WorkExperienceModal } from './WorkExperienceModal';
 
-export const WorkExperience = ({ profileUser, getProfileUser }) => {
-    const { Title } = Typography;
+const { Title } = Typography;
 
+export const WorkExperience = ({ profileUser, getProfileUser }) => {
     const userInfo = JSON.parse(window.localStorage.getItem("userInfo")) || {};
 
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,24 +23,25 @@ export const WorkExperience = ({ profileUser, getProfileUser }) => {
             .then(res => {
                 getProfileUser();
             }).catch((err) => { });
-    }
+    };
 
     //TODO add List from antd
     return (<>
-        <Row className='experience-title' justify={'space-between'} gutter={[24]} >
-            <Title level={4}>Experience</Title>
-            <Button icon={<PlusOutlined className='experience-button' />} type="text" onClick={() => setIsModalOpen(true)} />
-            {/* <Col span={1}> <Button icon={<EditOutlined className='experience-button' />} type="text" /> </Col> */}
-        </Row>
+        <div className='container-block'>
+            <div className="left-component"><Title level={4}>Experience</Title></div>
+            <div className="right-component" style={{ paddingTop: "25px" }}>
+                <Button icon={<PlusOutlined className='experience-button' />} type="text" onClick={() => setIsModalOpen(true)} />
+            </div>
+        </div>
 
-        {profileUser?.workExperiences?.map((profile, index) => <div key={profile.workExperienceId} className='experience-block'>
+        {profileUser?.workExperiences?.map((profile, index) => <div key={profile.workExperienceId} className='container-block'>
             <div className="left-component">
                 <div><b>{profile.positionTitle}</b></div>
                 <div><span className='experience-title'>Company:</span><b>{profile.companyName}</b></div>
                 <div>{moment(profile.startDate).format("DD MMM YYYY")}-
-                    {profile.endDate ? moment(profile.endDate).format("MMM YYYY") : "Present"}</div>
+                    {profile.endDate ? moment(profile.endDate).format("DD MMM YYYY") : "Present"}</div>
                 <div><span className='experience-title'>Employment Type:</span><b>{profile.employmentType}</b></div>
-                <div><span className='experience-title'>Description:</span><b>{profile.description}</b></div>
+                {profile.description && <div><span className='experience-title'>Description:</span><b>{profile.description}</b></div>}
             </div>
             <div className="right-component">
                 <Button style={{ color: "rgb(34 105 126)" }} type="text" shape="circle" icon={<EditOutlined />}

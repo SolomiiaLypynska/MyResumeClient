@@ -26,23 +26,19 @@ export const SignUp = () => {
         <Col span={12}>
             <Form form={form} name="basic" labelCol={{ span: 8 }} wrapperCol={{ span: 30 }} className='signup-form'
                 initialValues={{ remember: true, }} onFinish={onFinish} autoComplete="off">
-                <Form.Item label="First Name" name="firstName"
-                    rules={[{ required: true, message: '' }]}>
+                <Form.Item label="First Name" name="firstName" rules={[{ required: true, message: '' }]}>
                     <Input placeholder="First Name..." />
                 </Form.Item>
-                <Form.Item label="Last Name" name="lastName"
-                    rules={[{ required: true, message: '' }]}>
+                <Form.Item label="Last Name" name="lastName" rules={[{ required: true, message: '' }]}>
                     <Input placeholder="Last Name..." />
                 </Form.Item>
-                <Form.Item label="Email" name="email"
-                    rules={[{ type: 'email', message: '' }, { required: true, message: '' }]}>
+                <Form.Item label="Email" name="email" rules={[{ type: 'email', message: '' }, { required: true, message: '' }]}>
                     <Input prefix={<UserOutlined />} placeholder="Email..." />
                 </Form.Item>
                 <Form.Item label="Password" name="password" rules={[{ required: true, message: '' }]}>
                     <Input.Password prefix={<LockOutlined className="site-form-item-icon" />} placeholder="Password..." />
                 </Form.Item>
-                <Form.Item label="Role" name="role" wrapperCol={{ span: 10 }}
-                    rules={[{ required: true, message: '' }]}>
+                <Form.Item label="Role" name="role" wrapperCol={{ span: 10 }} rules={[{ required: true, message: '' }]}>
                     <Radio.Group style={{ textAlign: "left" }}>
                         <Space direction="vertical">
                             <Radio value={"USER"}>I'm looking for a job</Radio>
