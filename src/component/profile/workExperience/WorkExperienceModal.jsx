@@ -1,7 +1,7 @@
 import { DatePicker, Form, Input, Modal } from 'antd';
 import dayjs from 'dayjs';
 import React, { useEffect } from "react";
-import { addExperience } from "../../../service/WorkExperienceService";
+import { addExperience, upateExperience } from "../../../service/WorkExperienceService";
 import './WorkExperience.css';
 
 export const WorkExperienceModal = ({ isModalOpen, setIsModalOpen, getProfileUser, editableExperience }) => {
@@ -9,7 +9,7 @@ export const WorkExperienceModal = ({ isModalOpen, setIsModalOpen, getProfileUse
     const [form] = Form.useForm();
 
     useEffect(() => {
-        if (Object.keys(editableExperience).length !== 0) {
+        if (Object.keys(editableExperience).length !== 0 && isModalOpen) {
             form.setFieldsValue({
                 positionTitle: editableExperience.positionTitle,
                 companyName: editableExperience.companyName,
@@ -27,12 +27,21 @@ export const WorkExperienceModal = ({ isModalOpen, setIsModalOpen, getProfileUse
     const handleOk = () => {
         form.validateFields().then(val => {
             val = { ...val, userId: userInfo.userId };
-            addExperience(val, userInfo.token)
-                .then(res => {
-                    handleCancel();
-                    setIsModalOpen(false);
-                    getProfileUser();
-                }).catch((err) => { setIsModalOpen(false); });
+            if (Object.keys(editableExperience).length !== 0) {
+                upateExperience(editableExperience.workExperienceId, val, userInfo.token)
+                    .then(res => {
+                        handleCancel();
+                        setIsModalOpen(false);
+                        getProfileUser();
+                    }).catch((err) => { setIsModalOpen(false); });
+            } else {
+                addExperience(val, userInfo.token)
+                    .then(res => {
+                        handleCancel();
+                        setIsModalOpen(false);
+                        getProfileUser();
+                    }).catch((err) => { setIsModalOpen(false); });
+            }
         })
     };
 
