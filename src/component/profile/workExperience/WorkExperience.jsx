@@ -4,15 +4,26 @@ import moment from "moment";
 import React, { useEffect, useState } from "react";
 import './WorkExperience.css';
 import { WorkExperienceModal } from './WorkExperienceModal';
+import { deleteById } from "../../../service/WorkExperienceService";
 
 export const WorkExperience = ({ profileUser, getProfileUser }) => {
     const { Title } = Typography;
+
+    const userInfo = JSON.parse(window.localStorage.getItem("userInfo")) || {};
+
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedExperience, setSelectedExperience] = useState({});
 
     useEffect(() => {
         !isModalOpen && setSelectedExperience({});
     }, [isModalOpen]);
+
+    const onDelete = (value) => {
+        deleteById(value.workExperienceId, userInfo.token)
+                .then(res => {
+                    getProfileUser();
+                }).catch((err) => {  });
+    }
 
     //TODO add List from antd
     //TODO add Popconfirm for delete antd
@@ -36,9 +47,10 @@ export const WorkExperience = ({ profileUser, getProfileUser }) => {
                 <Button style={{ color: "rgb(34 105 126)" }} type="text" shape="circle" icon={<EditOutlined />}
                     onClick={() => {
                         setIsModalOpen(true);
-                        setSelectedExperience(profile)
+                        setSelectedExperience(profile);
                     }} />
-                <Button style={{ color: "#d2464d" }} type="text" shape="circle" icon={<DeleteOutlined />} />
+                <Button style={{ color: "#d2464d" }} type="text" shape="circle" icon={<DeleteOutlined />} 
+                onClick={() => onDelete(profile)}/>
             </div>
         </div>
         )}

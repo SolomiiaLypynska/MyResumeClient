@@ -14,3 +14,18 @@ export const addExperience = (requestPayload, token) => {
         });
 };
 
+export const deleteById = (id, token) => {
+    return fetch(`http://localhost:8015/user-ws/api/work/experience/${id}`,
+        {
+            method: "DELETE",
+            headers: { 'Authorization': 'Bearer ' + token }
+        })
+        .then((response) => {
+            if (response.ok) {
+                return response;
+            } else throw new Error(
+                `This is an HTTP error: The status is ${response.status}`
+            );
+        });
+};
+
