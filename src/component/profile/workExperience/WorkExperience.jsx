@@ -1,10 +1,10 @@
 import { DeleteOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons';
-import { Button, Row, Typography } from 'antd';
+import { Button, Popconfirm, Row, Typography } from 'antd';
 import moment from "moment";
 import React, { useEffect, useState } from "react";
+import { deleteById } from "../../../service/WorkExperienceService";
 import './WorkExperience.css';
 import { WorkExperienceModal } from './WorkExperienceModal';
-import { deleteById } from "../../../service/WorkExperienceService";
 
 export const WorkExperience = ({ profileUser, getProfileUser }) => {
     const { Title } = Typography;
@@ -20,13 +20,12 @@ export const WorkExperience = ({ profileUser, getProfileUser }) => {
 
     const onDelete = (value) => {
         deleteById(value.workExperienceId, userInfo.token)
-                .then(res => {
-                    getProfileUser();
-                }).catch((err) => {  });
+            .then(res => {
+                getProfileUser();
+            }).catch((err) => { });
     }
 
     //TODO add List from antd
-    //TODO add Popconfirm for delete antd
     return (<>
         <Row className='experience-title' justify={'space-between'} gutter={[24]} >
             <Title level={4}>Experience</Title>
@@ -49,8 +48,10 @@ export const WorkExperience = ({ profileUser, getProfileUser }) => {
                         setIsModalOpen(true);
                         setSelectedExperience(profile);
                     }} />
-                <Button style={{ color: "#d2464d" }} type="text" shape="circle" icon={<DeleteOutlined />} 
-                onClick={() => onDelete(profile)}/>
+                <Popconfirm title="Delete the experience" description="Are you sure to delete this work experience?"
+                    onConfirm={() => onDelete(profile)} okText="Yes" cancelText="No" >
+                    <Button style={{ color: "#d2464d" }} type="text" shape="circle" icon={<DeleteOutlined />} />
+                </Popconfirm>
             </div>
         </div>
         )}
