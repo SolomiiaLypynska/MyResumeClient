@@ -20,9 +20,9 @@ export const WorkExperience = ({ profileUser, getProfileUser }) => {
 
     const onDelete = (value) => {
         deleteById(value.workExperienceId, userInfo.token)
-            .then(res => {
+            .then(() => {
                 getProfileUser();
-            }).catch((err) => { });
+            }).catch(() => { });
     };
 
     //TODO add List from antd
@@ -34,7 +34,7 @@ export const WorkExperience = ({ profileUser, getProfileUser }) => {
             </div>
         </div>
 
-        {profileUser?.workExperiences?.map((profile, index) => <div key={profile.workExperienceId} className='container-block'>
+        {profileUser?.workExperiences?.map((profile) => <div key={profile.workExperienceId} className='container-block'>
             <div className="left-component">
                 <div><b>{profile.positionTitle}</b></div>
                 <div><span className='experience-title'>Company:</span><b>{profile.companyName}</b></div>
@@ -59,5 +59,5 @@ export const WorkExperience = ({ profileUser, getProfileUser }) => {
         <WorkExperienceModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} getProfileUser={getProfileUser}
             editableExperience={selectedExperience} />
     </>
-    )
+    );
 };

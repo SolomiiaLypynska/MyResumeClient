@@ -20,7 +20,7 @@ export const WorkExperienceModal = ({ isModalOpen, setIsModalOpen, getProfileUse
                 city: editableExperience.city,
                 startDate: dayjs(editableExperience.startDate),
                 endDate: editableExperience.endDate && dayjs(editableExperience.endDate)
-            })
+            });
         }
     }, [editableExperience, isModalOpen]);
 
@@ -29,20 +29,20 @@ export const WorkExperienceModal = ({ isModalOpen, setIsModalOpen, getProfileUse
             val = { ...val, userId: userInfo.userId };
             if (Object.keys(editableExperience).length !== 0) {
                 upateExperience(editableExperience.workExperienceId, val, userInfo.token)
-                    .then(res => {
+                    .then(() => {
                         handleCancel();
                         setIsModalOpen(false);
                         getProfileUser();
-                    }).catch((err) => { setIsModalOpen(false); });
+                    }).catch(() => { setIsModalOpen(false); });
             } else {
                 addExperience(val, userInfo.token)
-                    .then(res => {
+                    .then(() => {
                         handleCancel();
                         setIsModalOpen(false);
                         getProfileUser();
-                    }).catch((err) => { setIsModalOpen(false); });
+                    }).catch(() => { setIsModalOpen(false); });
             }
-        })
+        });
     };
 
     const handleCancel = () => {
@@ -51,7 +51,7 @@ export const WorkExperienceModal = ({ isModalOpen, setIsModalOpen, getProfileUse
     };
 
     return (<Modal title="Add experience" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-        <Form form={form} initialValues={{ remember: true, }} layout="vertical" autoComplete="off">
+        <Form form={form} initialValues={{ remember: true }} layout="vertical" autoComplete="off">
             <Form.Item label="Position" name="positionTitle" rules={[{ required: true, message: '' }]}>
                 <Input placeholder="Position..." />
             </Form.Item>
@@ -81,5 +81,5 @@ export const WorkExperienceModal = ({ isModalOpen, setIsModalOpen, getProfileUse
             </Form.Item>
         </Form>
     </Modal>
-    )
+    );
 };

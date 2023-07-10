@@ -7,7 +7,7 @@ import { logIn } from "../../../service/AuthService";
 import './LogIn.css';
 
 export const LogIn = () => {
-    const { setLogin } = useContext(UserContext)
+    const { setLogin } = useContext(UserContext);
     const navigate = useNavigate();
     const [form] = Form.useForm();
 
@@ -21,20 +21,20 @@ export const LogIn = () => {
                         userId: res.headers.get('userId'),
                         token: res.headers.get('token'),
                         role: res.headers.get('role')
-                    }
+                    };
                     window.localStorage.setItem("userInfo", JSON.stringify(userInfo));
                     setLogin(true);
                     onReset();
                     navigate('/profile');
                 }).catch((err) => { console.log(err); });
-        })
+        });
     };
 
     return (<><Row justify={'space-between'} gutter={[24]}>
         <Col span={1} />
         <Col span={14}>
             <Form form={form} name="basic" labelCol={{ span: 8 }} wrapperCol={{ span: 30 }} className='login-form'
-                initialValues={{ remember: true, }} onFinish={onFinish} autoComplete="off">
+                initialValues={{ remember: true }} onFinish={onFinish} autoComplete="off">
                 <Form.Item label="Email" name="email" rules={[{ type: 'email', message: '' }, { required: true, message: '' }]}>
                     <Input prefix={<UserOutlined />} placeholder="Email" />
                 </Form.Item>

@@ -37,5 +37,5 @@ export const Profile = () => {
                 <Footer style={{ textAlign: 'center' }}>My-Resume ©2023 Created by S.L.</Footer>
             </Layout>
         </Layout>
-    )
+    );
 };

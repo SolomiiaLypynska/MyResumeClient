@@ -14,7 +14,7 @@ export const NavBar = () => {
     const navigate = useNavigate();
 
     const onLogOut = () => {
-        logOut(userInfo.token).then(res => {
+        logOut(userInfo.token).then(() => {
             window.localStorage.removeItem("userInfo");
             setLogin(false);
             navigate('/logIn');

@@ -12,5 +12,5 @@ export const ProfileAvatar = ({ profileUser }) => {
             <Col span={3}> <Space wrap size={16}><b>{`${profileUser.firstName} ${profileUser.lastName}`}</b></Space> </Col>
         </Row>
     </>
-    )
+    );
 };

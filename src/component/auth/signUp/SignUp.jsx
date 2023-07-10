@@ -14,18 +14,18 @@ export const SignUp = () => {
     const onFinish = () => {
         form.validateFields().then(val => {
             saveUser(val)
-                .then(res => {
+                .then(() => {
                     onReset();
                     navigate('/login');
                 }).catch((err) => { console.log(err); });
-        })
+        });
     };
 
     return (<><Row justify={'space-between'} gutter={[24]}>
         <Col span={1} />
         <Col span={12}>
             <Form form={form} name="basic" labelCol={{ span: 8 }} wrapperCol={{ span: 30 }} className='signup-form'
-                initialValues={{ remember: true, }} onFinish={onFinish} autoComplete="off">
+                initialValues={{ remember: true }} onFinish={onFinish} autoComplete="off">
                 <Form.Item label="First Name" name="firstName" rules={[{ required: true, message: '' }]}>
                     <Input placeholder="First Name..." />
                 </Form.Item>
@@ -41,7 +41,7 @@ export const SignUp = () => {
                 <Form.Item label="Role" name="role" wrapperCol={{ span: 10 }} rules={[{ required: true, message: '' }]}>
                     <Radio.Group style={{ textAlign: "left" }}>
                         <Space direction="vertical">
-                            <Radio value={"USER"}>I'm looking for a job</Radio>
+                            <Radio value={"USER"}>I`&apos;`m looking for a job</Radio>
                             <Radio value={"RESEARCHER"}>I am looking for an employee</Radio>
                         </Space>
                     </Radio.Group>
